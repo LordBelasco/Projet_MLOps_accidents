@@ -107,13 +107,17 @@ HOST_OS="LINUX" opu "WINDOWS"
 mlflow_airflow\docker\server_deploy\.env
 GIT_TOKEN=ghp_...
 DAGSHUB_TOKEN=44a99cea...
+PERSISTENTVOLUME_HOSTPATH_PATH="/mnt/host/c/Users/lordb/OneDrive/Documents/PTP/Projet MLOps/Projet_MLOps_accidents/mlflow_airflow/kube/docker/data_server"
 
 mlflow_airflow\docker\server_test\.env
 PERSISTENTVOLUME_HOSTPATH_PATH="/mnt/host/c/Users/lordb/OneDrive/Documents/PTP/Projet MLOps/Projet_MLOps_accidents/mlflow_airflow/kube/docker/data_test"
 
 kuberntes Dashboard
-kubectl proxy 
+installer 
+https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
+lancer le proxy : kubectl proxy 
 créer un jeton : kubectl apply -f create-kube-dashboard-longlive-token.yaml
+puis kubectl -n kubernetes-dashboard create token admin-user
 http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/workloads?namespace=eval
 
 Airflow : http://localhost:8080/
@@ -122,6 +126,17 @@ MlFlow : http://localhost:5000
 
 kube-prometheus-stack
 https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
+
+il faut que chacun récupére le fichier de conficher de kub, qui est propre à chaque PC 
+kubectl config view --raw > .kube/config # exportation du fichier de configuration de Kubernetes afin que Helm puisse discuter avec l'API de Kubernetes
+chmod 600 .kube/config
+
+build des images 
+Optionnel, à faire par une personne pour push sur doskerhub
+    mlflow_airflow\kube\docker\build_and_push_server.bat
+    mlflow_airflow\kube\docker\build_and_push_test.bat
+obligatoire 
+    mlflow_airflow\docker\server_deploy\build-base.bat
 
 import de l'alerte et dashboard json de grafana
 mlflow_airflow\kube\FastAPI Accidents-Dashboard.json
