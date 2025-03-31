@@ -12,11 +12,11 @@ C'est pour ces raisons que nous avons travaillé sur une architecture MLOps afin
 
 ## Technologies utilisés:
 
-*Mise en place de l’Environnement:* **Docker**
-*Automatisation de l'ingestion de données et ré-entraînement du modèle:* **AirFlow**
-*Versioning des modèles/données:* **MLFlow, Dagshub(avec DVC)**
-*Orchestration & Déploiement:* **Kubernetes qui héberge une API fastAPI**
-*Monitoring:* **Prometheus** (collecter les métriques) et **Grafana** (visualisation)
+*Mise en place de l’Environnement:* **Docker**  
+*Automatisation de l'ingestion de données et ré-entraînement du modèle:* **AirFlow**  
+*Versioning des modèles/données:* **MLFlow, Dagshub(avec DVC)**  
+*Orchestration & Déploiement:* **Kubernetes qui héberge une API fastAPI**  
+*Monitoring:* **Prometheus** (collecter les métriques) et **Grafana** (visualisation)  
 
 
 ## Equipe de développement
@@ -69,7 +69,7 @@ PERSISTENTVOLUME_HOSTPATH_PATH="/mnt/host/c/.../Projet_MLOps_accidents/mlflow_ai
 PERSISTENTVOLUME_HOSTPATH_PATH="/mnt/host/c/.../Projet_MLOps_accidents/mlflow_airflow/kube/docker/data_test" # -> remplacer les ... par votre chemin local en veillant à remplacer C:/ par /mnt/host/c/ 
 ```
 
-### Activez kubernetes dans docker desktop:</u> paramètres > Kubernetes > Enable Kubernets
+### Activez kubernetes dans docker desktop:</u> paramètres > Kubernetes > Enable Kubernetes
 ### Installer helm:
 ```shell
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
@@ -123,7 +123,7 @@ MLFlow: http://localhost:5000
 ### Ouvrir Prometheus et Grafana
 **pour cela cherchez les ports sur lesquels ils sont accessibles:**
 ```shell
-kubectl get svc -n monitoring'
+kubectl get svc -n monitoring
 ```
 **Prometheus:** prometheus-kube-prometheus-prometheus -> cherchez le port sur lequel il est accessible (eg. 9090:30090/TCP : le port sera 30090)  
 **Grafana:** prometheus-grafana -> cherchez le port sur lequel il est accessible  
